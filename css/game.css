@@ -28,7 +28,6 @@
 }
 
 .front {
-   background-image: url('../assets/arma.jpg');
    transform: rotateY(180deg);
 } 
 
