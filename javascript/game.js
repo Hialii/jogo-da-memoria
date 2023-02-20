@@ -18,8 +18,35 @@ const createElement = (tag,className) => {
    return element;
 }
 
+
+const checkEndGame = () => {
+   const disableCards = document.querySelectorAll(".disable-card");
+
+   if(disableCards.length === 16) {
+      alert("parabens, voce venceu")
+   }
+}
+
+
 const checkCards = () => {
-   
+   const firstCharacter = firstCard.getAttribute('data-character');
+   const secondCharacter = secondCard.getAttribute('data-character');
+
+   if(firstCharacter === secondCharacter) {
+      firstCard.firstChild.classList.add("disable-card");
+      secondCard.firstChild.classList.add('disable-card');
+      firstCard = '', secondCard = '';
+
+      checkEndGame();
+   } else {
+      setTimeout(() => {
+      firstCard.classList.remove("reveal-card");
+      secondCard.classList.remove("reveal-card");
+
+      firstCard = '', secondCard = '';
+      }, 500)
+
+   }
 }
 
 const revealCard = ({target}) => {  //target = elemento que foi clicado
@@ -38,9 +65,6 @@ const revealCard = ({target}) => {  //target = elemento que foi clicado
   }
 }
   
-   
-
-
 const createCard = (character) => {
    const card = createElement('div', 'card');
    const front = createElement('div', 'face front');
@@ -50,10 +74,10 @@ const createCard = (character) => {
 
    card.appendChild(front);
    card.appendChild(back);
-   card.addEventListener('click', revealCard)
+   card.addEventListener('click', revealCard);
+   card.setAttribute('data-character', character);
    grid.appendChild(card);
 
-   
 
    return card
 }
