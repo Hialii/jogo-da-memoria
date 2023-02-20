@@ -1,10 +1,37 @@
+main {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   /* background-image: url(../assets/bg.jpg);
+   background-size: cover; estica a imagem para cobrir sempre todo o tamanho da tela */
+   min-height: 100vh;
+   background-color: #1b1c1b;
+   color: #000000;
+   align-items: center;
+   justify-content: center;
+   padding: 20px 20px 50px;
+}
+
+header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 50%;
+   max-width: 400px;
+   padding: 20px;
+   font-size: 1rem;
+   margin: 0 0 30px;
+   border-radius: 50px;
+   background-color: #4ceb4f;
+}
+
 .grid {
    display: grid;
    grid-template-columns: repeat(4, 1fr);
    gap: 15px;
-   width: 100%;
+   width: 35%;
    max-width: 800px;
-   margin: 100px auto;
+   margin: 0 auto;
 }
 
 .card {

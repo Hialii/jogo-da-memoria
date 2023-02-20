@@ -12,7 +12,7 @@ const validateInput = ({ target}) => {
 
 const handleSubmit = (event) => {
     event.preventDefault(); //previne comportamento padrão de recarregar a página
-    localStorage.setItem('palyer', input.value); // vai salvar no local store o valor que a pessoa digitou no input
+    localStorage.setItem('player', input.value); // vai salvar no local store o valor que a pessoa digitou no input
     window.location = "pages/game.html"; //  depois direciona a pessoa para outra pagina
 }
 

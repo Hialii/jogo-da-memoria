@@ -1,4 +1,6 @@
 const grid = document.querySelector(".grid");
+const timer = document.querySelector(".timer");
+const spanPlayer = document.querySelector(".player");
 const characters = [
    'arma',
    'weed',
@@ -18,12 +20,12 @@ const createElement = (tag,className) => {
    return element;
 }
 
-
 const checkEndGame = () => {
    const disableCards = document.querySelectorAll(".disable-card");
 
    if(disableCards.length === 16) {
-      alert("parabens, voce venceu")
+      clearInterval(this.loop);
+      alert(`Parabéns ${spanPlayer.innerHTML}! Seu tempo foi: ${timer.innerHTML}s`);
    }
 }
 
@@ -55,10 +57,10 @@ const revealCard = ({target}) => {  //target = elemento que foi clicado
   }
 
   if(firstCard === '') {
-   target.parentNode.classList.add("reveal-card") // pega todo o elemento "card" e adiciona class
+   target.parentNode.classList.add("reveal-card"); // pega todo o elemento "card" e adiciona class
    firstCard = target.parentNode;
   }else if(secondCard === '') {
-   target.parentNode.classList.add("reveal-card") 
+   target.parentNode.classList.add("reveal-card");
    secondCard = target.parentNode;
 
    checkCards();
@@ -90,8 +92,21 @@ const loadGame = () => {
 
    duplicateCharacters.forEach((character) => {
       const card = createCard(character);
-      grid.appendChild(card)
+      grid.appendChild(card);
    })
 }
 
-loadGame();
+
+const startTimer = () => {
+   this.loop = setInterval(() => {
+      const currentTime = +timer.textContent; // o operdor + converte a string para numero
+      timer.textContent = currentTime + 1
+   }, 1000)
+}
+window.onload = () => {
+   const playerName = localStorage.getItem('player');
+   spanPlayer.innerHTML = `Player: ${playerName}`;
+   startTimer();
+   loadGame();
+}
+
